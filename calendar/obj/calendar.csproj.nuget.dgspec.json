@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\calendar\\calendar\\calendar\\calendar.csproj": {}
+    "D:\\calendar\\calendarmain\\calendar\\calendar\\calendar.csproj": {}
   },
   "projects": {
-    "D:\\calendar\\calendar\\calendar\\calendar.csproj": {
+    "D:\\calendar\\calendarmain\\calendar\\calendar\\calendar.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\calendar\\calendar\\calendar\\calendar.csproj",
+        "projectUniqueName": "D:\\calendar\\calendarmain\\calendar\\calendar\\calendar.csproj",
         "projectName": "calendar",
-        "projectPath": "D:\\calendar\\calendar\\calendar\\calendar.csproj",
+        "projectPath": "D:\\calendar\\calendarmain\\calendar\\calendar\\calendar.csproj",
         "packagesPath": "C:\\Users\\sa1ex\\.nuget\\packages\\",
-        "outputPath": "D:\\calendar\\calendar\\calendar\\obj\\",
+        "outputPath": "D:\\calendar\\calendarmain\\calendar\\calendar\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sa1ex\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -60,9 +60,17 @@
               "target": "Package",
               "version": "[3.1.32, )"
             },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.32, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[3.1.32, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.5, )"
             }
           },
           "imports": [
