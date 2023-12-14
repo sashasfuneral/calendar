@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using calendar.Data;
 
 namespace calendar.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231214125210_eventslocations")]
+    partial class eventslocations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -176,14 +178,9 @@ namespace calendar.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("LocationId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Events");
                 });
@@ -324,10 +321,6 @@ namespace calendar.Data.Migrations
                     b.HasOne("calendar.Models.Location", "Location")
                         .WithMany("Events")
                         .HasForeignKey("LocationId");
-
-                    b.HasOne("calendar.Models.User", "User")
-                        .WithMany("Events")
-                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

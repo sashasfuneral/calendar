@@ -9699,11 +9699,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\calendar\\calendarmain\\calendar\\calendar\\calendar.csproj",
+      "projectUniqueName": "D:\\calendar\\calendar\\calendar\\calendar.csproj",
       "projectName": "calendar",
-      "projectPath": "D:\\calendar\\calendarmain\\calendar\\calendar\\calendar.csproj",
+      "projectPath": "D:\\calendar\\calendar\\calendar\\calendar.csproj",
       "packagesPath": "C:\\Users\\sa1ex\\.nuget\\packages\\",
-      "outputPath": "D:\\calendar\\calendarmain\\calendar\\calendar\\obj\\",
+      "outputPath": "D:\\calendar\\calendar\\calendar\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sa1ex\\AppData\\Roaming\\NuGet\\NuGet.Config",

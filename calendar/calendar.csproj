@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20231214122848_notes.cs" />
+    <Compile Remove="Data\Migrations\20231214122848_notes.Designer.cs" />
+    <Compile Remove="Data\Migrations\20231214124632_eventslocations.cs" />
+    <Compile Remove="Data\Migrations\20231214124632_eventslocations.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.32" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.32" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.32" />
