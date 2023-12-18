@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace calendar.Models
@@ -14,5 +15,28 @@ namespace calendar.Models
 
         public virtual Location Location { get; set; }
         public virtual User User { get; set; }
+
+        public Event(IFormCollection form, Location location)
+        {
+            Id = int.Parse(form["Id"]);
+            Title = form["Title"];
+            Description = form["Description"];
+            StartTime = DateTime.Parse(form["StartTime"]);
+            EndTime = DateTime.Parse(form["EndTime"]);
+            Location = location;
+        }
+        public void UpdateEvent(IFormCollection form, Location location)
+        {
+            Id = int.Parse(form["Id"]);
+            Title = form["Title"];
+            Description = form["Description"];
+            StartTime = DateTime.Parse(form["StartTime"]);
+            EndTime = DateTime.Parse(form["EndTime"]);
+            Location = location;
+        }
+        public Event()
+        {
+
+        }
     }
 }

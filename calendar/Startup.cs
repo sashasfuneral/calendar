@@ -34,6 +34,7 @@ namespace calendar
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddScoped<IDAL, DAL>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
