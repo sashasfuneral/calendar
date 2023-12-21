@@ -9,17 +9,22 @@ using calendar.Data;
 using calendar.Models;
 using calendar.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace calendar.Controllers
 {
+    [Authorize]
     public class EventController : Controller
     {
         private readonly IDAL _dal;
+        private readonly UserManager<User> _usermanager;
 
-        public EventController( IDAL dal)
+        public EventController(IDAL dal, UserManager<User> usermanager)
         {
             _dal = dal;
+            _usermanager = usermanager;
         }
 
         // GET: Event
@@ -29,7 +34,7 @@ namespace calendar.Controllers
             {
                 ViewData["Alert"] = TempData["Alert"];
             }
-            return View(_dal.GetEvents());
+            return View(_dal.GetMyEvents(User.FindFirstValue(ClaimTypes.NameIdentifier)));
         }
 
         // GET: Event/Details/5
@@ -50,9 +55,10 @@ namespace calendar.Controllers
         }
 
         // GET: Event/Create
+
         public IActionResult Create()
         {
-            return View(new EventViewModel(_dal.GetLocations()));
+            return View(new EventViewModel(_dal.GetLocations(), User.FindFirstValue(ClaimTypes.NameIdentifier)));
         }
 
         // POST: Event/Create
@@ -60,22 +66,24 @@ namespace calendar.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(EventViewModel vm, IFormCollection form)
+
+        public async Task<IActionResult> Create(EventViewModel vm, IFormCollection form)
         {
             try
             {
                 _dal.CreateEvent(form);
-                TempData["Alert"] = "Success! You created a new event for: " + form["Event.Title"];
+                TempData["Alert"] = "Success! You created a new event for: " + form["Event.Name"];
                 return RedirectToAction("Index");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ViewData["Alert"] = "An error occured: " + ex.Message;
+                ViewData["Alert"] = "An error occurred: " + ex.Message;
                 return View(vm);
             }
         }
 
         // GET: Event/Edit/5
+
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,7 +96,7 @@ namespace calendar.Controllers
             {
                 return NotFound();
             }
-            var vm = new EventViewModel(@event, _dal.GetLocations());
+            var vm = new EventViewModel(@event, _dal.GetLocations(), User.FindFirstValue(ClaimTypes.NameIdentifier));
             return View(vm);
         }
 
@@ -97,18 +105,19 @@ namespace calendar.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Edit(int id, IFormCollection form)
         {
             try
             {
                 _dal.UpdateEvent(form);
-                TempData["Alert"] = "Success! You modified a record for: " + form["Event.Title"];
+                TempData["Alert"] = "Success! You modified an event for: " + form["Event.Name"];
                 return RedirectToAction(nameof(Index));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ViewData["Alert"] = "An error occured: " + ex.Message;
-                var vm = new EventViewModel(_dal.GetEvent(id), _dal.GetLocations());
+                ViewData["Alert"] = "An error occurred: " + ex.Message;
+                var vm = new EventViewModel(_dal.GetEvent(id), _dal.GetLocations(), User.FindFirstValue(ClaimTypes.NameIdentifier));
                 return View(vm);
             }
         }
@@ -120,7 +129,6 @@ namespace calendar.Controllers
             {
                 return NotFound();
             }
-
             var @event = _dal.GetEvent((int)id);
             if (@event == null)
             {
@@ -135,7 +143,7 @@ namespace calendar.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
-            _dal.DeleteEvent((int)id);
+            _dal.DeleteEvent(id);
             TempData["Alert"] = "You deleted an event.";
             return RedirectToAction(nameof(Index));
         }

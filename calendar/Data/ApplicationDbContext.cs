@@ -34,7 +34,7 @@ namespace calendar.Data
                    .AddJsonFile("appsettings.json")
                    .Build();
                 var connectionString = configuration.GetConnectionString("DefaultConnection");
-                optionsBuilder.UseSqlServer(connectionString);
+                optionsBuilder.UseSqlServer(connectionString).UseLazyLoadingProxies();
             }
         }
 

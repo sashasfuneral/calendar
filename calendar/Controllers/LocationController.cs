@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using calendar.Data;
 using calendar.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
-namespace calendar.Controllers
+namespace DotNetCoreCalendar.Controllers
 {
+    [Authorize]
     public class LocationController : Controller
     {
         private readonly IDAL _dal;
+        private readonly UserManager<User> _usermanager;
 
-        public LocationController(IDAL dal)
+        public LocationController(IDAL idal, UserManager<User> usermanager)
         {
-            _dal = dal;
+            _dal = idal;
+            _usermanager = usermanager;
         }
 
         // GET: Location
@@ -67,14 +72,14 @@ namespace calendar.Controllers
                     TempData["Alert"] = "Success! You created a location for: " + location.Name;
                     return RedirectToAction(nameof(Index));
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    ViewData["Alert"] = "An error occured: " + ex.Message;
+                    ViewData["Alert"] = "An error occurred: " + ex.Message;
                     return View(location);
                 }
+
             }
             return View(location);
         }
     }
 }
-

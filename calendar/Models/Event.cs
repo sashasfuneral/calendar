@@ -16,16 +16,18 @@ namespace calendar.Models
         public virtual Location Location { get; set; }
         public virtual User User { get; set; }
 
-        public Event(IFormCollection form, Location location)
+        public Event(IFormCollection form, Location location, User user)
         {
+            User = user;
             Title = form["Event.Title"].ToString();
             Description = form["Event.Description"].ToString();
             StartTime = DateTime.Parse(form["Event.StartTime"].ToString());
             EndTime = DateTime.Parse(form["Event.EndTime"].ToString());
             Location = location;
         }
-        public void UpdateEvent(IFormCollection form, Location location)
+        public void UpdateEvent(IFormCollection form, Location location, User user)
         {
+            User = user;
             Title = form["Event.Title"].ToString();
             Description = form["Event.Description"].ToString();
             StartTime = DateTime.Parse(form["Event.StartTime"].ToString());
