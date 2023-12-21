@@ -955,3 +955,4 @@ D:\calendar\calendar\calendar\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 D:\calendar\calendar\calendar\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
 D:\calendar\calendar\calendar\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
 D:\calendar\calendar\calendar\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
+D:\calendar\calendar\calendar\obj\Debug\netcoreapp3.1\Razor\Views\Home\PageNotFound.cshtml.g.cs
